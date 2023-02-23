@@ -1,0 +1,5 @@
+// Los archivos de sugerencia ayudan al IDE de Visual Studio a interpretar los identificadores de Visual C++
+// por ejemplo, los nombres de funciones y macros.
+// Para obtener más información, consulte https://go.microsoft.com/fwlink/?linkid=865984
+#define VARPTR(dll, name, type, __VA_ARGS__) type** Var_##dll##_##name##(VOID) { static DWORD f##Var_##dll##_##name = NULL; if(f##Var_##dll##_##name##== NULL) { static Offsets f##Var_##_##name##_offsets = { __VA_ARGS__ }; static int address = *(&f##Var_##_##name##_offsets._113c + D2Version::GetGameVersionID()); f##Var_##dll##_##name##= Patch::GetDllOffset(dll, address); } return (type**)&##f##Var_##dll##_##name; }
+#define VARPTR(dll, name, type, __VA_ARGS__) extern type** Var_##dll##_##name##(VOID); static type* p##_##dll##_##name = (type*)*Var_##dll##_##name##();
